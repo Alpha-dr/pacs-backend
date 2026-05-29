@@ -997,6 +997,37 @@ app.get(
     }
   }
 );
+// DEBUG - GET ALL STUDIES
+app.get(
+  "/all-studies",
+  async (req, res) => {
+
+    try {
+
+      const result =
+        await pool.query(
+          `
+          SELECT *
+          FROM studies
+          ORDER BY id DESC
+          `
+        );
+
+      res.json(
+        result.rows
+      );
+
+    } catch (err) {
+
+      console.log(err);
+
+      res.status(500).json({
+        message:
+          "Error fetching studies",
+      });
+    }
+  }
+);
 // START SERVER
 server.listen(
   5000,
