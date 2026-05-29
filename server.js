@@ -1028,6 +1028,27 @@ app.get(
     }
   }
 );
+//debug _users
+app.get(
+  "/debug-users",
+  async (req, res) => {
+
+    const result =
+      await pool.query(
+        `
+        SELECT
+          id,
+          username,
+          role
+        FROM users
+        `
+      );
+
+    res.json(
+      result.rows
+    );
+  }
+);
 // START SERVER
 server.listen(
   5000,
