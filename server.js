@@ -224,7 +224,7 @@ app.post(
             id: user.id,
             role: user.role,
           },
-          "SECRET_KEY"
+          process.env.JWT_SECRET
         );
 
       res.json({
@@ -907,7 +907,7 @@ app.post(
       const decoded =
         jwt.verify(
           token,
-          "SECRET_KEY"
+          process.env.JWT_SECRET
         );
 
       await pool.query(
